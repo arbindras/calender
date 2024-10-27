@@ -22,7 +22,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/events', {
+                const res = await axios.get('https://calender-1-0k87.onrender.com/api/events', {
                     headers: { 'x-auth-token': localStorage.getItem('token') }
                 });
                 if (Array.isArray(res.data)) {
@@ -43,7 +43,7 @@ function Dashboard() {
 
     const handleDelete = async (eventId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/events/${eventId}`, {
+            await axios.delete(`https://calender-1-0k87.onrender.com/api/events/${eventId}`, {
                 headers: { 'x-auth-token': localStorage.getItem('token') }
             });
             setEvents(events.filter(event => event.id !== eventId));
