@@ -12,7 +12,7 @@ function CreateEvent() {
         e.preventDefault();
         try {
             await axios.post(
-                'http://localhost:5000/api/events',
+                'https://calender-1-0k87.onrender.com/api/events',
                 { title, date, description },
                 { headers: { 'x-auth-token': localStorage.getItem('token') } }
             );
