@@ -11,7 +11,7 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('/api/auth/register', { name, email, password });
+            const res = await axios.post('https://calender-1-0k87.onrender.com/api/auth/register', { name, email, password });
             localStorage.setItem('token', res.data.token);
             navigate('/dashboard');
         } catch (err) {
