@@ -46,11 +46,11 @@ function App() {
       description: eventDescription,
       start: {
         dateTime: start.toISOString(), // Date.toISOString() ->
-        timeZone: "Asia/Kolkata", // America/Los_Angeles
+        timeZone: "Asia/Kolkata", 
       },
       end: {
         dateTime: end.toISOString(), // Date.toISOString() ->
-        timeZone: "Asia/Kolkata", // America/Los_Angeles
+        timeZone: "Asia/Kolkata", 
       },
     };
     await fetch(
