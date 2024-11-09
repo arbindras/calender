@@ -45,11 +45,11 @@ function App() {
       summary: eventName,
       description: eventDescription,
       start: {
-        dateTime: start.toISOString(), // Date.toISOString() ->
+        dateTime: start.toDateString(),
         timeZone: "Asia/Kolkata", 
       },
       end: {
-        dateTime: end.toISOString(), // Date.toISOString() ->
+        dateTime: end.toDateString(),
         timeZone: "Asia/Kolkata", 
       },
     };
