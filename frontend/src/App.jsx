@@ -53,28 +53,23 @@ function App() {
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, 
       },
     };
-    try {
-      const response = await fetch(
-        "https://www.googleapis.com/calendar/v3/calendars/primary/events",
-        {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + session.provider_token, // Access token for google
-          },
-          body: JSON.stringify(event),
-        }
-      );
-      const data = await response.json();
-      if (response.ok) {
-        console.log(data); alert("Event created, check your Google Calendar!");
-      } else {
-        console.error("Error creating event:", data);
-        alert("Event creation failed. Please try again.");
+    await fetch(
+      "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + session.provider_token, // Access token for google
+        },
+        body: JSON.stringify(event),
       }
-    } catch (error) {
-      console.error("Fetch error:", error)
-      alert("An error occurred while creating the event. Please try again.");
-    }
+    )
+      .then((data) => {
+        return data.json();
+      })
+      .then((data) => {
+        console.log(data);
+        alert("Event created, check your Google Calendar!");
+      });
   }
   console.log(session);
   console.log(start);
