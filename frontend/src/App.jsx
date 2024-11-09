@@ -24,6 +24,7 @@ function App() {
   async function googleSignIn() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
+      redirectTo: 'https://calender-gules.vercel.app',
       options: {
         scopes: "https://www.googleapis.com/auth/calendar",
       },
