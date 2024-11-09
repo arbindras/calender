@@ -5,8 +5,9 @@ import {
   useSupabaseClient,
   useSessionContext,
 } from "@supabase/auth-helpers-react";
-import DateTimePicker from "react-datetime-picker";
-
+// import DateTimePicker from "react-datetime-picker";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 function App() {
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
@@ -78,24 +79,67 @@ function App() {
       <div style={{ width: "400px", margin: "30px auto" }}>
         {session ? (
           <>
-            <h2>Hey there {session.user.email}</h2>
-            <p>Start of your event</p>
-            <DateTimePicker onChange={setStart} value={start} />
-            <p>End of your event</p>
-            <DateTimePicker onChange={setEnd} value={end} />
-            <p>Event name</p>
-            <input type="text" onChange={(e) => setEventName(e.target.value)} />
-            <p>Event description</p>
-            <input
-              type="text"
-              onChange={(e) => setEventDescription(e.target.value)}
-            />
-            <hr />
-            <button onClick={() => createCalendarEvent()}>
-              Create Calendar Event
-            </button>
-            <p></p>
-            <button onClick={() => signOut()}>Sign Out</button>
+            <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px', backgroundColor: '#f9f9f9', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+              <h2 style={{ textAlign: 'center', color: '#333' }}>Hey there, {session.user.email}</h2>
+              <p style={{ textAlign: 'center', color: '#777' }}>Create your event below</p>
+
+              <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+                <label style={{ fontWeight: 'bold' }}>Start of your event</label>
+                <DatePicker
+                  selected={start}
+                  onChange={(date) => setStart(date)}
+                  value={start}
+                  showTimeSelect
+                  dateFormat="Pp"
+                  timeFormat="HH:mm"
+                  style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+                />
+
+                <label style={{ fontWeight: 'bold' }}>End of your event</label>
+                <DatePicker
+                  selected={end}
+                  onChange={(date) => setEnd(date)}
+                  value={end}
+                  showTimeSelect
+                  dateFormat="Pp"
+                  timeFormat="HH:mm"
+                  style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+                />
+
+                <label style={{ fontWeight: 'bold' }}>Event Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter event name"
+                  onChange={(e) => setEventName(e.target.value)}
+                  style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+                />
+
+                <label style={{ fontWeight: 'bold' }}>Event Description</label>
+                <textarea
+                  placeholder="Enter event description"
+                  onChange={(e) => setEventDescription(e.target.value)}
+                  style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc', minHeight: '80px' }}
+                />
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+                  <button
+                    onClick={() => createCalendarEvent()}
+                    style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                  >
+                    Create Calendar Event
+                  </button>
+
+                  <button
+                    onClick={() => signOut()}
+                    style={{ padding: '10px 20px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+
+              </form>
+            </div>
           </>
         ) : (
           <>
