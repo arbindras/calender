@@ -46,11 +46,11 @@ function App() {
       description: eventDescription,
       start: {
         dateTime: start.toISOString(),
-        timeZone: "Asia/Kolkata", 
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
       end: {
         dateTime: end.toISOString(),
-        timeZone: "Asia/Kolkata",  
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, 
       },
     };
     try {
