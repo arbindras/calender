@@ -45,11 +45,17 @@ function App() {
       summary: eventName,
       description: eventDescription,
       start: {
-        dateTime: start.toDateString(),
+        dateTime: start.toLocaleString('en-IN', {
+          timeZone: 'Asia/Kolkata',
+          hour12: false // Optional: Use 24-hour format if needed
+        }),
         timeZone: "Asia/Kolkata", 
       },
       end: {
-        dateTime: end.toDateString(),
+        dateTime: end.toLocaleString('en-IN', {
+          timeZone: 'Asia/Kolkata',
+          hour12: false // Optional: Use 24-hour format if needed
+        }),
         timeZone: "Asia/Kolkata", 
       },
     };
